@@ -7,7 +7,7 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +36,7 @@ export const ModalHeader = styled.div`
 export const ModalTitle = styled.h2`
   font-size: 20px;
   font-weight: bold;
-  color: #333;
+  color: #000;
   margin: 0;
 `;
 
@@ -56,11 +56,17 @@ export const InputGroup = styled.div`
 export const Input = styled.input`
   width: 100%;
   height: 40px;
+  background-color: #FFF;
+  color: #000;
   border: 1px solid #555A5F;
   border-radius: 15px;
   padding-left: 35px;
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: 16px;
+
+  &::placeholder {
+    color: #000;
+  }
 `;
 
 export const Icon = styled.span`
@@ -68,7 +74,7 @@ export const Icon = styled.span`
   top: 50%;
   left: 10px;
   transform: translateY(-50%);
-  color: #888;
+  color: #000;
 `;
 
 export const ModalFooter = styled.div`
