@@ -5,6 +5,7 @@ import ReportPageWrapper from "./pages/ReportPageWrapper";
 import Header from "./components/header";
 import Search from "./components/search";
 import { FaSearch} from "react-icons/fa"
+import Modal from "./components/modalSearch";
 
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
             </Search>
           </main>
         </div>
+        <Modal />
+
+        
       </div>
     </BrowserRouter>
   );
