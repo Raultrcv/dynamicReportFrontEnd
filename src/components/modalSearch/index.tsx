@@ -30,26 +30,6 @@ export default function Modal() {
           <Icon><MdOutlineDirectionsCar /></Icon>
         </InputGroup>
 
-        <InputGroup>
-          <Input placeholder="Sentidos" />
-          <Icon><MdOutlineRoute /></Icon>
-        </InputGroup>
-
-        <InputGroup>
-          <Input placeholder="Período" />
-          <Icon><MdAccessTime /></Icon>
-        </InputGroup>
-
-        <InputGroup>
-          <Input placeholder="Data Inicial" />
-          <Icon><MdCalendarToday /></Icon>
-        </InputGroup>
-
-        <InputGroup>
-          <Input placeholder="Data Final" />
-          <Icon><MdCalendarToday /></Icon>
-        </InputGroup>
-
         <ModalFooter>
           <SecondaryButton>LIMPAR</SecondaryButton>{/**Tradução */}
           <PrimaryButton>ENVIAR</PrimaryButton>{/**Tradução */}
