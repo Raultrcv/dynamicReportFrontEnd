@@ -1,4 +1,3 @@
-// Modal.jsx
 import {
   Overlay,
   ContainerModal,
@@ -12,15 +11,19 @@ import {
   PrimaryButton,
   SecondaryButton
 } from "./styles";
-import { MdClose, MdAccessTime, MdCalendarToday, MdOutlineDirectionsCar, MdOutlineRoute } from 'react-icons/md';
+import { MdClose, MdOutlineDirectionsCar } from 'react-icons/md';
 
-export default function Modal() {
+interface ModalProps {
+  onClose: () => void;
+}
+
+export default function Modal({ onClose }: ModalProps) {
   return (
-    <Overlay>
-      <ContainerModal>
+    <Overlay onClick={onClose}>
+      <ContainerModal onClick={(e) => e.stopPropagation()}>
         <ModalHeader>
-          <ModalTitle>Painel de Seleção</ModalTitle>{/**Tradução */}
-          <CloseButton>
+          <ModalTitle>Painel de Seleção</ModalTitle>
+          <CloseButton onClick={onClose}>
             <MdClose />
           </CloseButton>
         </ModalHeader>
@@ -31,8 +34,8 @@ export default function Modal() {
         </InputGroup>
 
         <ModalFooter>
-          <SecondaryButton>LIMPAR</SecondaryButton>{/**Tradução */}
-          <PrimaryButton>ENVIAR</PrimaryButton>{/**Tradução */}
+          <SecondaryButton>LIMPAR</SecondaryButton>
+          <PrimaryButton>ENVIAR</PrimaryButton>
         </ModalFooter>
       </ContainerModal>
     </Overlay>
