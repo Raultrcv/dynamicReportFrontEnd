@@ -21,15 +21,13 @@ function App() {
               <Route path="/:reportName" element={<ReportPageWrapper />} />
             </Routes>
 
-            {/* Componente que vai abrir o modal */}
             <Search onClick={() => setModalOpen(true)}>
-              <FaSearch size={20} />
+              <FaSearch size={20} style={{color: 'white'}} />
             </Search>
 
           </main>
         </div>
 
-        {/* Modal visível apenas quando o estado estiver true */}
         {modalOpen && <Modal onClose={() => setModalOpen(false)} />}
       </div>
     </BrowserRouter>

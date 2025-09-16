@@ -28,14 +28,11 @@ export default function Modal({ onClose }: ModalProps) {
           </CloseButton>
         </ModalHeader>
 
-        <InputGroup>
-          <Input placeholder="Equipamento" />
-          <Icon><MdOutlineDirectionsCar /></Icon>
-        </InputGroup>
+        
 
         <ModalFooter>
-          <SecondaryButton>LIMPAR</SecondaryButton>
-          <PrimaryButton>ENVIAR</PrimaryButton>
+          <SecondaryButton>LIMPAR</SecondaryButton>{/**Tradução */}
+          <PrimaryButton>ENVIAR</PrimaryButton>{/**Tradução */}
         </ModalFooter>
       </ContainerModal>
     </Overlay>

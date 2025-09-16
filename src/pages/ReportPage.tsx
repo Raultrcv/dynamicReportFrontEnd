@@ -87,7 +87,7 @@ export default function ReportPage({ reportName }: { reportName: string }) {
       .finally(() => setLoading(false));
   };
 
-  if (!manifest) return <div>Carregando manifesto...</div>;
+  if (!manifest) return <div>Carregando manifesto...</div>;{/**Tradução */}
 
   // Função para exportar para Excel customizado
   const exportToExcel = async () => {
@@ -252,7 +252,7 @@ export default function ReportPage({ reportName }: { reportName: string }) {
         </button>
       )}
 
-      {loading && <p>Carregando dados...</p>}
+      {loading && <p>Carregando dados...</p>}{/**Tradução */}
 
       {report && <ReportTable output={report.output} data={report.data} />}
     </div>

@@ -4,7 +4,7 @@ import ReportPage from "./ReportPage";
 export default function ReportPageWrapper() {
   const { reportName } = useParams<{ reportName: string }>();
 
-  if (!reportName) return <div>Relatório não especificado</div>;
+  if (!reportName) return <div>Relatório não especificado</div>;{/**Tradução */}
 
   return <ReportPage reportName={reportName} />;
 }
