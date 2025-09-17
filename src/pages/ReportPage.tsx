@@ -39,7 +39,6 @@ export default function ReportPage({ reportName }: { reportName: string }) {
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Fetch Manifesto
   useEffect(() => {
     const token = localStorage.getItem("token");
     fetch(`http://localhost:8080/manifests/${reportName}`, {
@@ -62,13 +61,24 @@ export default function ReportPage({ reportName }: { reportName: string }) {
       });
   }, [reportName]);
 
-  // Buscar relatório
   const fetchReport = () => {
     if (!manifest) return;
     const filteredParams: Record<string, any> = {};
-    for (const key in params) {
+  for (const key in params) {
+    if (key === "initDate" || key === "endDate") {
+      const date = new Date(params[key]);
+      const pad = (num: number, size = 2) => String(num).padStart(size, "0");
+
+      const formatted = 
+        `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ` +
+        `${pad(date.getHours())}:${pad(date.getMinutes())}`;
+
+      filteredParams[key] = formatted;
+    } else {
       filteredParams[key] = params[key] || null;
     }
+}
+
 
     const queryString = new URLSearchParams(filteredParams).toString();
     setLoading(true);

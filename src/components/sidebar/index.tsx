@@ -25,7 +25,6 @@ export default function Sidebar() {
       .then(setManifests);
   }, []);
 
-
   return (
     <Container>
         <Title>Relatórios</Title>{/**Tradução*/}

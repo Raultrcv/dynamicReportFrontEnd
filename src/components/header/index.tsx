@@ -1,8 +1,10 @@
-import { HeaderMenu } from "./styles";
+import { HeaderMenu, ItemHeader } from "./styles";
 
 
 export default function Header(){
     return (
-        <HeaderMenu>Relatórios{/**Tradução */}</HeaderMenu> 
+        <HeaderMenu>
+            <ItemHeader size={36} />
+        </HeaderMenu> 
     )
 }

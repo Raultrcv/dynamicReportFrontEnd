@@ -2,8 +2,9 @@ import styled from 'styled-components'
 
 
 export const Container = styled.div`
-  width: 12rem; /* 192px */
-  flex-shrink: 0; /* Impede que o sidebar encolha */
+  width: 320px;
+  height:100%;
+  flex-shrink: 0;
   background-color: #0E0E10;
   color: #ffffff;
   padding: 1rem;
