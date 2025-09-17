@@ -1,4 +1,3 @@
-// styles.js
 import styled from 'styled-components';
 
 export const Overlay = styled.div`
@@ -28,6 +27,7 @@ export const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  justify-content:space-between;
   border-bottom: 1px solid #e0e0e0;
   padding-bottom: 10px;
   margin-bottom: 15px;
@@ -38,7 +38,9 @@ export const ModalTitle = styled.h2`
   font-weight: bold;
   color: #000;
   margin: 0;
-`;
+  left: 50%;
+  transform: translateX(115%)
+  `;
 
 export const CloseButton = styled.button`
   background: none;
@@ -46,6 +48,10 @@ export const CloseButton = styled.button`
   font-size: 24px;
   cursor: pointer;
   color: #888;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const InputGroup = styled.div`
@@ -96,10 +102,26 @@ export const PrimaryButton = styled(Button)`
   background-color: #343A40;
   color: white;
   border: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: #FF3030;
+  }
 `;
 
 export const SecondaryButton = styled(Button)`
   background-color: #343A40;
-  color: #FFF;
-  border: 1px solid #ccc;
+  color: white;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: #FF3030;
+  }
 `;

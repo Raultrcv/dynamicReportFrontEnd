@@ -6,12 +6,11 @@ import {
   CloseButton,
   InputGroup,
   Input,
-  Icon,
   ModalFooter,
   PrimaryButton,
   SecondaryButton
 } from "./styles";
-import { MdClose, MdOutlineDirectionsCar } from 'react-icons/md';
+import { MdClose} from 'react-icons/md';
 
 interface ModalProps {
   onClose: () => void;
@@ -22,7 +21,7 @@ export default function Modal({ onClose }: ModalProps) {
     <Overlay onClick={onClose}>
       <ContainerModal onClick={(e) => e.stopPropagation()}>
         <ModalHeader>
-          <ModalTitle>Painel de Seleção</ModalTitle>
+          <ModalTitle>Painel de Seleção</ModalTitle>{/**Tradução */}
           <CloseButton onClick={onClose}>
             <MdClose />
           </CloseButton>
