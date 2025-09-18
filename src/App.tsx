@@ -2,8 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/sidebar/index";
 import ReportPageWrapper from "./pages/ReportPageWrapper";
 import Header from "./components/header";
-import Search from "./components/search";
-import { FaSearch } from "react-icons/fa";
 import Modal from "./components/modalSearch";
 import { useState } from "react";
 
@@ -21,9 +19,7 @@ function App() {
               <Route path="/:reportName" element={<ReportPageWrapper />} />
             </Routes>
 
-            <Search onClick={() => setModalOpen(true)}>
-              <FaSearch size={20} style={{color: 'white'}} />
-            </Search>
+            
 
           </main>
         </div>

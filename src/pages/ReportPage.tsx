@@ -5,12 +5,14 @@ import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import logo from "../assets/tracevia_do_brasil_logo.jpeg";
 import Modal from "../components/modalSearch";
+import { FaSearch } from "react-icons/fa";
 // ================== Interfaces ==================
 interface Param {
   name: string;
   label: string;
   type: string;
   options?: { value: any; label: string }[];
+  datasource?: string;
 }
 
 interface ReportOutput {
@@ -201,7 +203,7 @@ export default function ReportPage({ reportName }: { reportName: string }) {
         onClick={() => setIsModalOpen(true)}
         className="px-2 py-1 bg-purple-600 text-white rounded"
       >
-        Abrir Painel de Seleção
+        <FaSearch size={20} />
       </button>
 
       {loading && <p>Carregando dados...</p>}

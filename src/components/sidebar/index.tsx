@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Container, ItemMenu, Title } from "./styles";
+import { Container, ItemMenu, Title, Options, LinkMenu, Icon } from "./styles";
+
 
 
 interface ManifestLink {
@@ -27,12 +27,12 @@ export default function Sidebar() {
 
   return (
     <Container>
-        <Title>Relatórios</Title>{/**Tradução*/}
+        <Title>Tracevia ITS</Title>{/**Tradução*/}
         <ItemMenu>
             {manifests.map((m) => (
-          <li key={m.path}>
-            <Link to={`/${m.path}`}>{m.name}</Link>
-          </li>
+          <Options key={m.path}>
+            <LinkMenu to={`/${m.path}`}> <Icon size={25}/>  {m.name}</LinkMenu>
+          </Options>
         ))}
         </ItemMenu>
     </Container>
