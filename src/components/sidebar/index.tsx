@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, ItemMenu, Title, Options, LinkMenu, Icon, CloseIcon } from "./styles";
+import { Container, ItemMenu, Title, Options, LinkMenu, Icon, CloseIcon, Concessionaire } from "./styles";
 
 interface ManifestLink {
   name: string;
@@ -29,6 +29,7 @@ export default function Sidebar({ onClose }: SidebarProps) {
     <Container>
         <CloseIcon onClick={onClose} />
         <Title>Tracevia ITS</Title>
+        <Concessionaire>Via Paulista</Concessionaire>
         <ItemMenu>
           {manifests.map((m) => (
             <Options key={m.path}>

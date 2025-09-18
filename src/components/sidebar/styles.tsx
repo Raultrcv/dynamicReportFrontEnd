@@ -55,6 +55,14 @@ export const Options = styled.li`
   text-decoration: none;
 `;
 
+export const Concessionaire = styled.div`
+  background-color: yellow;
+  text-align:center;
+  padding:10px;
+  font-size:18px;
+  color:black;
+`;
+
 export const LinkMenu = styled(Link)`
   color: #FFF;
   display: block; 
