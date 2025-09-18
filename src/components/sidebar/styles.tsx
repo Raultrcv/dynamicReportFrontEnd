@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FaCircleArrowRight } from "react-icons/fa6";
+import { IoClose } from "react-icons/io5";
+
 
 export const Icon = styled(FaCircleArrowRight)`
   transform: translateY(5px);
@@ -12,15 +14,33 @@ export const Container = styled.div`
   flex-shrink: 0;
   background-color: #0E0E10;
   color: #ffffff;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+`;
+
+export const CloseIcon = styled(IoClose)`
+    position: absolute; 
+    top: 15px; 
+    right: 20px; 
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const Title = styled.h2`
   font-size: 1.125rem;
-  font-weight: bold;
+  font-weight: normal;
   padding-left:30px;
-  font-size: 20px;
+  font-size: 21.5px;
   margin-bottom: 1.5rem;
-  margin-top: 0;
+  margin-top: 5px;
 `;
 
 export const ItemMenu = styled.ul`

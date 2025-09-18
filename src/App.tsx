@@ -6,24 +6,23 @@ import Modal from "./components/modalSearch";
 import { useState } from "react";
 
 function App() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
   return (
     <BrowserRouter>
       <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-        <Header />
+        <Header onToggleSidebar={toggleSidebar} />
         <div className="flex flex-1">
-          <Sidebar />
+          {sidebarOpen && <Sidebar onClose={toggleSidebar} />}
           <main className="flex-1 p-4">
             <Routes>
               <Route path="/:reportName" element={<ReportPageWrapper />} />
             </Routes>
-
-            
-
           </main>
         </div>
-
         {modalOpen && <Modal onClose={() => setModalOpen(false)} />}
       </div>
     </BrowserRouter>

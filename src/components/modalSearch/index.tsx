@@ -21,7 +21,7 @@ export default function Modal({ onClose, children }: ModalProps) {
     <Overlay onClick={onClose}>
       <ContainerModal onClick={(e) => e.stopPropagation()}>
         <ModalHeader>
-          <ModalTitle>Painel de Seleção</ModalTitle>
+          <ModalTitle>Painel de Seleção</ModalTitle>{/**Tradução */}
           <CloseButton onClick={onClose}>
             <MdClose />
           </CloseButton>
@@ -29,10 +29,7 @@ export default function Modal({ onClose, children }: ModalProps) {
 
         {children && <div>{children}</div>}
 
-        <ModalFooter>
-          <SecondaryButton>LIMPAR</SecondaryButton>
-          <PrimaryButton>ENVIAR</PrimaryButton>
-        </ModalFooter>
+
       </ContainerModal>
     </Overlay>
   );

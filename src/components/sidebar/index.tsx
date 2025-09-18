@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
-import { Container, ItemMenu, Title, Options, LinkMenu, Icon } from "./styles";
-
-
+import { Container, ItemMenu, Title, Options, LinkMenu, Icon, CloseIcon } from "./styles";
 
 interface ManifestLink {
   name: string;
   path: string;
 }
 
+interface SidebarProps {
+  onClose: () => void;
+}
 
-export default function Sidebar() {
+export default function Sidebar({ onClose }: SidebarProps) {
   const [manifests, setManifests] = useState<ManifestLink[]>([]);
 
-
   useEffect(() => {
-  const token = localStorage.getItem("token");
-  console.log("token", token);
+    const token = localStorage.getItem("token");
+    console.log("token", token);
     fetch("http://localhost:8080/manifests", {
       headers: {
         Authorization: token ? `Bearer ${token}` : ""
@@ -27,14 +27,17 @@ export default function Sidebar() {
 
   return (
     <Container>
-        <Title>Tracevia ITS</Title>{/**Tradução*/}
+        <CloseIcon onClick={onClose} />
+        <Title>Tracevia ITS</Title>
         <ItemMenu>
-            {manifests.map((m) => (
-          <Options key={m.path}>
-            <LinkMenu to={`/${m.path}`}> <Icon size={25}/>  {m.name}</LinkMenu>
-          </Options>
-        ))}
+          {manifests.map((m) => (
+            <Options key={m.path}>
+              <LinkMenu to={`/${m.path}`} onClick={onClose}>
+                <Icon size={25}/>  {m.name}
+              </LinkMenu>
+            </Options>
+          ))}
         </ItemMenu>
     </Container>
-)
+  );
 }
