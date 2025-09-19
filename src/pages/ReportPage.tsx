@@ -4,8 +4,10 @@ import ReportTable from "../components/ReportTable";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import logo from "../assets/tracevia_do_brasil_logo.jpeg";
+import MultiSelect from "../components/multiselect/multiselect";
 import Modal from "../components/modalSearch";
 import { FaSearch } from "react-icons/fa";
+
 // ================== Interfaces ==================
 interface Param {
   name: string;
@@ -55,6 +57,8 @@ export default function ReportPage({ reportName }: { reportName: string }) {
         data.params?.forEach((p) => {
           if (p.type === "select" && p.options && p.options.length > 0) {
             initialParams[p.name] = p.options[0].value;
+          } else if (p.type === "select-multi") {
+            initialParams[p.name] = [];
           } else {
             initialParams[p.name] = "";
           }
@@ -66,21 +70,20 @@ export default function ReportPage({ reportName }: { reportName: string }) {
   const fetchReport = () => {
     if (!manifest) return;
     const filteredParams: Record<string, any> = {};
-  for (const key in params) {
-    if (key === "initDate" || key === "endDate") {
-      const date = new Date(params[key]);
-      const pad = (num: number, size = 2) => String(num).padStart(size, "0");
+    for (const key in params) {
+      if (key === "initDate" || key === "endDate") {
+        const date = new Date(params[key]);
+        const pad = (num: number, size = 2) => String(num).padStart(size, "0");
 
-      const formatted = 
-        `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ` +
-        `${pad(date.getHours())}:${pad(date.getMinutes())}`;
+        const formatted =
+          `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ` +
+          `${pad(date.getHours())}:${pad(date.getMinutes())}`;
 
-      filteredParams[key] = formatted;
-    } else {
-      filteredParams[key] = params[key] || null;
+        filteredParams[key] = formatted;
+      } else {
+        filteredParams[key] = params[key] || null;
+      }
     }
-}
-
 
     const queryString = new URLSearchParams(filteredParams).toString();
     setLoading(true);
@@ -100,13 +103,28 @@ export default function ReportPage({ reportName }: { reportName: string }) {
       .finally(() => setLoading(false));
   };
 
+  // Função para obter colunas dinamicamente do backend
+  function getDynamicColumns(report: ReportResponse | null) {
+    if (report?.output?.columns && report.output.columns.length > 0) {
+      return report.output.columns;
+    }
+    if (report?.data && report.data.length > 0) {
+      return Object.keys(report.data[0]).map((key) => ({
+        name: key,
+        label: key,
+        type: "string",
+      }));
+    }
+    return [];
+  }
+
   // Exportar Excel
   const exportToExcel = async () => {
     if (!report || !manifest) return;
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet("Relatório");
 
-    const columns = manifest.output.columns;
+    const columns = getDynamicColumns(report);
     const lastColLetter = worksheet.getColumn(columns.length + 1).letter;
     worksheet.mergeCells(`A1:${lastColLetter}1`);
     worksheet.getCell("A1").value = manifest.name;
@@ -116,12 +134,9 @@ export default function ReportPage({ reportName }: { reportName: string }) {
       fgColor: { argb: "FFFF00" },
     };
 
-    const firstCols = columns.slice(0, 13);
-    const restCols = columns.slice(13);
-
     // Cabeçalhos
-    firstCols.forEach((col, idx) => {
-      const cell = worksheet.getCell(2, idx + 2);
+    columns.forEach((col, idx) => {
+      const cell = worksheet.getCell(2, idx + 1);
       cell.value = col.label;
       cell.fill = {
         type: "pattern",
@@ -130,20 +145,8 @@ export default function ReportPage({ reportName }: { reportName: string }) {
       };
     });
 
-    const totalCols = columns.length;
-    for (let colIdx = 1; colIdx <= totalCols + 1; colIdx++) {
-      const cell = worksheet.getCell(2, colIdx);
-      cell.fill = {
-        type: "pattern",
-        pattern: "solid",
-        fgColor: { argb: "FFFF00" },
-      };
-    }
-
-    const totalRows = report.data.length;
-    for (let i = 2; i <= totalRows + 2; i++) {
-      const cell = worksheet.getCell(i, 1);
-      cell.fill = {
+    for (let colIdx = 1; colIdx <= columns.length; colIdx++) {
+      worksheet.getCell(2, colIdx).fill = {
         type: "pattern",
         pattern: "solid",
         fgColor: { argb: "FFFF00" },
@@ -152,19 +155,13 @@ export default function ReportPage({ reportName }: { reportName: string }) {
 
     // Dados
     report.data.forEach((row, rowIdx) => {
-      firstCols.forEach((col, colIdx) => {
-        worksheet.getCell(rowIdx + 3, colIdx + 2).value = row[col.name];
-      });
-      restCols.forEach((col, colIdx) => {
-        worksheet.getCell(rowIdx + 3, colIdx + 6).value = row[col.name];
+      columns.forEach((col, colIdx) => {
+        worksheet.getCell(rowIdx + 3, colIdx + 1).value = row[col.name];
       });
     });
 
-    worksheet.getColumn(1).width = 3;
-
-    const allCols = [...firstCols, ...restCols];
-    allCols.forEach((col, idx) => {
-      const colIndex = idx + 2;
+    // Ajustar largura das colunas
+    columns.forEach((col, idx) => {
       let maxLength = col.label.length;
       report.data.forEach((row) => {
         const value = row[col.name];
@@ -172,9 +169,10 @@ export default function ReportPage({ reportName }: { reportName: string }) {
           maxLength = value.toString().length;
         }
       });
-      worksheet.getColumn(colIndex).width = Math.max(maxLength + 2, 10);
+      worksheet.getColumn(idx + 1).width = Math.max(maxLength + 2, 10);
     });
 
+    // Logo
     const response = await fetch(logo);
     const imageBuffer = await response.arrayBuffer();
     const imageId = workbook.addImage({
@@ -215,7 +213,13 @@ export default function ReportPage({ reportName }: { reportName: string }) {
           >
             Exportar para Excel
           </button>
-          <ReportTable output={report.output} data={report.data} />
+          <ReportTable
+            output={{
+              ...report.output,
+              columns: getDynamicColumns(report),
+            }}
+            data={report.data}
+          />
         </>
       )}
 
@@ -249,6 +253,22 @@ export default function ReportPage({ reportName }: { reportName: string }) {
                       </option>
                     ))}
                   </select>
+                ) : p.type === "select-multi" ? (
+                  <MultiSelect
+                    name={p.name}
+                    options={
+                      p.options
+                        ? p.options.map((opt) => ({
+                            value: opt.value,
+                            label: opt.label,
+                          }))
+                        : []
+                    }
+                    value={Array.isArray(params[p.name]) ? params[p.name] : []}
+                    onChange={(val) => {
+                      setParams({ ...params, [p.name]: val });
+                    }}
+                  />
                 ) : (
                   <input
                     type={p.type === "number" ? "number" : "text"}

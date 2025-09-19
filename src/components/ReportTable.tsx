@@ -46,6 +46,7 @@ export default function ReportTable({ output, data }: ReportTableProps) {
   const dataCellStyle: React.CSSProperties = {
     padding: '10px',
     border: '1px solid #4B5563',
+    color: "black"
   };
 
   const renderTableHeader = () => {
