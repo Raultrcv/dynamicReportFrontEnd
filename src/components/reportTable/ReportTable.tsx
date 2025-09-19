@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
+import { 
+  ContainerTable,
+  Table 
+} from "./styles";
 
 // As interfaces não mudam
 interface Column {
@@ -86,8 +90,8 @@ export default function ReportTable({ output, data }: ReportTableProps) {
   };
 
   return (
-    <div style={{ overflowX: 'auto', width: '90%', margin: '0 auto'}}>
-      <table style={{ width: '100%', borderCollapse: 'collapse', color: '#D1D5DB' }}>
+    <ContainerTable>
+      <Table>
         {renderTableHeader()}
         <tbody>
           {data.map((row, rowIndex) => (
@@ -107,7 +111,7 @@ export default function ReportTable({ output, data }: ReportTableProps) {
             </tr>
           ))}
         </tbody>
-      </table>
-    </div>
+      </Table>
+    </ContainerTable>
   );
 }

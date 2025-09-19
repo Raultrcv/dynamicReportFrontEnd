@@ -12,7 +12,6 @@ export const NameReport = styled.span`
 `;
 
 export const Title = styled.div`
-  background-color: orange;
   height: 51px;
   display: flex;
   align-items: center;

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import ReportTable from "../../components/ReportTable";
+import ReportTable from "../../components/reportTable/ReportTable";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import logo from "../../assets/tracevia_do_brasil_logo.jpeg"
