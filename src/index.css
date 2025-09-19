@@ -78,8 +78,11 @@ button:focus-visible {
 
 select {
   color: #000;
-  border-radius: 15px;
-  padding: 5px;
-  margin: 0px 5px 5px 5px;
+  border-radius: 25px;
+  height: 40px;
+  width: 100%;
+  margin: 0px 5px 20px 5px;
   background-color: #FFF;
+  border: 1px solid #000;
+  appearance: none;
 }

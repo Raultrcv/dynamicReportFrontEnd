@@ -61,3 +61,8 @@ export const Logo = styled.div`
   display: inline-block;
   border-radius: 4px;
 `;
+
+export const Options = styled.option`
+  color: red;
+  width: 25px;
+  `;

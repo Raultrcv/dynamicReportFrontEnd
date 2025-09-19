@@ -53,9 +53,11 @@ const MultiSelect = ({
         style={{
           border: "1px solid #ccc",
           padding: "8px",
+          marginBottom: '5px',
           cursor: "pointer",
           borderRadius: 20,
           background: "white",
+          textAlign: 'center'
         }}
       >
         {selected.length > 0

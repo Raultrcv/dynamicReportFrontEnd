@@ -16,6 +16,7 @@ import {
   Title,
   Logo,
   ButtonContainer,
+  Options
 } from "./styles";
 
 // ================== Interfaces ==================
@@ -258,11 +259,11 @@ export default function ReportPage({ reportName }: { reportName: string }) {
                       setParams({ ...params, [p.name]: e.target.value })
                     }
                   >
-                    <option value="">{p.label}</option>
+                    <Options value="">{p.label}</Options>
                     {p.options?.map((opt) => (
-                      <option key={opt.value} value={opt.value}>
+                      <Options key={opt.value} value={opt.value}>
                         {opt.label}
-                      </option>
+                      </Options>
                     ))}
                   </select>
                 ) : p.type === "select-multi" ? (
