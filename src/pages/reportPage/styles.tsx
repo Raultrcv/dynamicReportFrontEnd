@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import LogoConcessionaire from "../../assets/via_paulista.webp";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+`;
 
 export const NameReport = styled.span`
   padding: 1rem;
@@ -46,9 +48,15 @@ export const ButtonExcel = styled.button`
   padding: 0.5rem;
 `;
 
-export const Logo = styled.span`
-  background-color: purple;
+export const Logo = styled.div`
+  background-image: url(${LogoConcessionaire});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
   text-align: center;
+  left: 48%;
   width: 50px;
+  height: 45px;
   display: inline-block;
 `;

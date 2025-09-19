@@ -1,4 +1,10 @@
-import { HeaderMenu, ItemHeader } from "./styles";
+import { 
+    HeaderMenu,
+    ItemHeader,
+    Notification,
+    UserIcon,
+    RightIcons
+} from "./styles";
 
 
 interface HeaderProps {
@@ -9,6 +15,10 @@ export default function Header({ onToggleSidebar }: HeaderProps){
     return (
         <HeaderMenu>
             <ItemHeader size={36} onClick={onToggleSidebar} />
+            <RightIcons>
+                <Notification size={25} />
+                <UserIcon size={36} />
+            </RightIcons>
         </HeaderMenu> 
     )
 }

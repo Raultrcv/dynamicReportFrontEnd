@@ -5,14 +5,13 @@ import {
   ModalHeader,
   ModalTitle,
   CloseButton,
-  ModalFooter,
 
 } from "./styles";
 import { MdClose } from "react-icons/md";
 
 interface ModalProps {
   onClose: () => void;
-  children?: React.ReactNode; // recebe conteúdo externo
+  children?: React.ReactNode;
 }
 
 export default function Modal({ onClose, children }: ModalProps) {

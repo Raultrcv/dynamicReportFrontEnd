@@ -53,7 +53,12 @@ export default function ReportPage({ reportName }: { reportName: string }) {
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+
   useEffect(() => {
+
+    setReport(null);
+    setParams({});
+
     const token = localStorage.getItem("token");
     fetch(`http://localhost:8080/manifests/${reportName}`, {
       headers: {
@@ -207,7 +212,7 @@ export default function ReportPage({ reportName }: { reportName: string }) {
     <Container>
       <Title>
         <NameReport>{manifest.name}</NameReport>
-        <Logo>Logo</Logo>
+        <Logo></Logo>
         <ButtonContainer>
           <OpenModal
             onClick={() => setIsModalOpen(true)}

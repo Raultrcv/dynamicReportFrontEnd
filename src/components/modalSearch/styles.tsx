@@ -28,7 +28,6 @@ export const ModalHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   justify-content:space-between;
-  border-bottom: 1px solid #e0e0e0;
   padding-bottom: 10px;
   margin-bottom: 15px;
 `;
@@ -44,7 +43,6 @@ export const ModalTitle = styled.h2`
 
 export const CloseButton = styled.button`
   background: none;
-  border: none;
   font-size: 24px;
   cursor: pointer;
   color: #888;
@@ -64,43 +62,4 @@ export const CloseButton = styled.button`
 export const InputGroup = styled.div`
   margin-bottom: 15px;
   position: relative;
-`;
-
-export const Input = styled.input`
-  width: 100%;
-  height: 40px;
-  background-color: #FFF;
-  color: #000;
-  border: 1px solid #555A5F;
-  border-radius: 15px;
-  padding-left: 35px;
-  box-sizing: border-box;
-  font-size: 16px;
-
-  &::placeholder {
-    color: #000;
-  }
-`;
-
-export const Icon = styled.span`
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  color: #000;
-`;
-
-export const ModalFooter = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  padding-top: 15px;
-`;
-
-export const Button = styled.button`
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 14px;
 `;

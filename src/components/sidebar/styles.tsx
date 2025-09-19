@@ -4,12 +4,13 @@ import { FaCircleArrowRight } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 
 
+
 export const Icon = styled(FaCircleArrowRight)`
   transform: translateY(5px);
   margin-right: 10px;
 `;
 
-export const Container = styled.div`
+export const Container = styled.div<{ $isOpen: boolean }>`
   width: 350px;
   flex-shrink: 0;
   background-color: #0E0E10;
@@ -19,6 +20,11 @@ export const Container = styled.div`
   top: 0;
   left: 0;
   z-index: 1000;
+  
+  /* Adicionando a transição */
+  transition: transform 0.3s ease-in-out;
+  /* Estado inicial: fora da tela */
+  transform: ${({ $isOpen }) => ($isOpen ? 'translateX(0)' : 'translateX(-100%)')};
 `;
 
 export const CloseIcon = styled(IoClose)`
