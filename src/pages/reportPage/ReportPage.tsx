@@ -14,7 +14,8 @@ import {
   OpenModal,
   ButtonExcel,
   Title,
-  Logo
+  Logo,
+  ButtonContainer
  } from "./styles";
 
 // ================== Interfaces ==================
@@ -207,22 +208,20 @@ export default function ReportPage({ reportName }: { reportName: string }) {
       <Title>
         <NameReport>{manifest.name}</NameReport>
         <Logo>Logo</Logo>
-        <OpenModal
-        onClick={() => setIsModalOpen(true)}
-      >
-        <FaSearch size={20} />
-      </OpenModal>
-      {report && (
-        <>
-          <ButtonExcel
-            onClick={exportToExcel}
-            className="ml-2 px-2 py-1 bg-green-600 text-white rounded"
+        <ButtonContainer>
+          <OpenModal
+            onClick={() => setIsModalOpen(true)}
           >
-            <FaFileExcel  size={20} />
-          </ButtonExcel>
-         
-        </>
-      )}
+            <FaSearch size={20} />
+          </OpenModal>
+          {report && (
+            <ButtonExcel
+              onClick={exportToExcel}
+            >
+              <FaFileExcel size={20} />
+            </ButtonExcel>
+          )}
+        </ButtonContainer>
       </Title>
       
 

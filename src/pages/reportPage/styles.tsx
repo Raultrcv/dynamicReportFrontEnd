@@ -14,14 +14,18 @@ export const NameReport = styled.span`
 export const Title = styled.div`
   background-color: orange;
   height: 51px;
-  justify-content: center;
-  padding-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  padding: 0 1rem; 
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  & > button:not(:last-child) {
+    margin-right: 5px; 
+  }
 `;
 
 export const OpenModal = styled.button`
@@ -29,21 +33,21 @@ export const OpenModal = styled.button`
   color: #fff;
   border-radius: 4px;
   cursor: pointer;
-  margin-left: 10px;
-  `;
+  border: none;
+  padding: 0.5rem;
+`;
 
 export const ButtonExcel = styled.button`
   background-color: #343a40;
   color: #fff;
   border-radius: 4px;
   cursor: pointer;
-  margin-left: 10px;
-
+  border: none;
+  padding: 0.5rem;
 `;
 
 export const Logo = styled.span`
   background-color: purple;
-  margin-left: 335px;
   text-align: center;
   width: 50px;
   display: inline-block;
