@@ -55,8 +55,9 @@ export const Logo = styled.div`
   background-repeat: no-repeat;
   position: absolute;
   text-align: center;
-  left: 48%;
-  width: 50px;
+  left: 48.5%;
+  width: 45px;
   height: 45px;
   display: inline-block;
+  border-radius: 4px;
 `;

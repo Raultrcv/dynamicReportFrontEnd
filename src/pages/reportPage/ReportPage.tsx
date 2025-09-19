@@ -71,7 +71,7 @@ export default function ReportPage({ reportName }: { reportName: string }) {
         const initialParams: Record<string, any> = {};
         data.params?.forEach((p) => {
           if (p.type === "select" && p.options && p.options.length > 0) {
-            initialParams[p.name] = p.options[0].value;
+            initialParams[p.name] = p.label;
           } else if (p.type === "select-multi") {
             initialParams[p.name] = [];
           } else {
@@ -250,7 +250,6 @@ export default function ReportPage({ reportName }: { reportName: string }) {
           <div className="p-4">
             {manifest.params?.map((p) => (
               <div key={p.name} className="mb-4">
-                <label className="mr-2">{p.label}:</label>
                 {p.type === "datetime-local" ? (
                   <input
                     type="datetime-local"
@@ -266,9 +265,8 @@ export default function ReportPage({ reportName }: { reportName: string }) {
                     onChange={(e) =>
                       setParams({ ...params, [p.name]: e.target.value })
                     }
-                    className="border px-2 py-1"
                   >
-                    <option value="">Selecione</option>
+                    <option value="">{p.label}</option>
                     {p.options?.map((opt) => (
                       <option key={opt.value} value={opt.value}>
                         {opt.label}
