@@ -6,8 +6,7 @@ import {
   ModalTitle,
   CloseButton,
   ModalFooter,
-  PrimaryButton,
-  SecondaryButton
+
 } from "./styles";
 import { MdClose } from "react-icons/md";
 

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import ReportPage from "./ReportPage";
+import ReportPage from "./reportPage/ReportPage";
 
 export default function ReportPageWrapper() {
   const { reportName } = useParams<{ reportName: string }>();

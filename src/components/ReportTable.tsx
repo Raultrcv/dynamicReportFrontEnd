@@ -86,7 +86,7 @@ export default function ReportTable({ output, data }: ReportTableProps) {
   };
 
   return (
-    <div style={{ marginTop: '24px', overflowX: 'auto' }}>
+    <div style={{ overflowX: 'auto', width: '90%', margin: '0 auto'}}>
       <table style={{ width: '100%', borderCollapse: 'collapse', color: '#D1D5DB' }}>
         {renderTableHeader()}
         <tbody>

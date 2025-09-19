@@ -1,12 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import ReportTable from "../components/ReportTable";
+import ReportTable from "../../components/ReportTable";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import logo from "../assets/tracevia_do_brasil_logo.jpeg";
-import MultiSelect from "../components/multiselect/multiselect";
-import Modal from "../components/modalSearch";
+import logo from "../../assets/tracevia_do_brasil_logo.jpeg"
+import MultiSelect from "../../components/multiselect/Multiselect";
+import Modal from "../../components/modalSearch";
+import { FaFileExcel } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
+import { 
+  Container,
+  NameReport,
+  OpenModal,
+  ButtonExcel,
+  Title,
+  Logo
+ } from "./styles";
 
 // ================== Interfaces ==================
 interface Param {
@@ -194,25 +203,34 @@ export default function ReportPage({ reportName }: { reportName: string }) {
   if (!manifest) return <div>Carregando manifesto...</div>;
 
   return (
-    <div className="p-4">
-      <h1 className="text-xl mb-4">{manifest.name}</h1>
-
-      <button
+    <Container>
+      <Title>
+        <NameReport>{manifest.name}</NameReport>
+        <Logo>Logo</Logo>
+        <OpenModal
         onClick={() => setIsModalOpen(true)}
-        className="px-2 py-1 bg-purple-600 text-white rounded"
       >
         <FaSearch size={20} />
-      </button>
+      </OpenModal>
+      {report && (
+        <>
+          <ButtonExcel
+            onClick={exportToExcel}
+            className="ml-2 px-2 py-1 bg-green-600 text-white rounded"
+          >
+            <FaFileExcel  size={20} />
+          </ButtonExcel>
+         
+        </>
+      )}
+      </Title>
+      
+
+      
 
       {loading && <p>Carregando dados...</p>}
       {report && (
         <>
-          <button
-            onClick={exportToExcel}
-            className="ml-2 px-2 py-1 bg-green-600 text-white rounded"
-          >
-            Exportar para Excel
-          </button>
           <ReportTable
             output={{
               ...report.output,
@@ -294,6 +312,6 @@ export default function ReportPage({ reportName }: { reportName: string }) {
           </div>
         </Modal>
       )}
-    </div>
+    </Container>
   );
 }

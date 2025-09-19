@@ -48,6 +48,7 @@ const MultiSelect = ({ name, options, value, onChange }: MultiSelectProps) => {
           cursor: "pointer",
           borderRadius: 4,
           background: "white",
+          
         }}
       >
         {selected.length > 0

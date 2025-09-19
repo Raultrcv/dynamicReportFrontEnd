@@ -52,6 +52,13 @@ export const CloseButton = styled.button`
   &:focus {
     outline: none;
   }
+
+  &:hover {
+    color: #FF3030;
+    background-color: #FFF;
+    box-shadow: none;
+    transform: scale(1.1);
+  }
 `;
 
 export const InputGroup = styled.div`
@@ -96,32 +103,4 @@ export const Button = styled.button`
   cursor: pointer;
   font-weight: bold;
   font-size: 14px;
-`;
-
-export const PrimaryButton = styled(Button)`
-  background-color: #343A40;
-  color: white;
-  border: none;
-
-  &:focus {
-    outline: none;
-  }
-
-  &:hover {
-    background-color: #FF3030;
-  }
-`;
-
-export const SecondaryButton = styled(Button)`
-  background-color: #343A40;
-  color: white;
-  border: none;
-
-  &:focus {
-    outline: none;
-  }
-
-  &:hover {
-    background-color: #FF3030;
-  }
 `;
