@@ -10,9 +10,17 @@ interface MultiSelectProps {
   options: Option[];
   value: string[];
   onChange: (val: string[]) => void;
+  placeholder:string;
 }
 
-const MultiSelect = ({ name, options, value, onChange }: MultiSelectProps) => {
+const MultiSelect = ({
+  name,
+  options,
+  value,
+  onChange,
+  // Desestrutura a nova propriedade `placeholder`
+  placeholder,
+}: MultiSelectProps) => {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -46,9 +54,8 @@ const MultiSelect = ({ name, options, value, onChange }: MultiSelectProps) => {
           border: "1px solid #ccc",
           padding: "8px",
           cursor: "pointer",
-          borderRadius: 4,
+          borderRadius: 20,
           background: "white",
-          
         }}
       >
         {selected.length > 0
@@ -56,7 +63,7 @@ const MultiSelect = ({ name, options, value, onChange }: MultiSelectProps) => {
               .filter((o) => selected.includes(o.value))
               .map((o) => o.label)
               .join(", ")
-          : "Selecione..."}
+          : placeholder}
       </div>
 
       {open && (

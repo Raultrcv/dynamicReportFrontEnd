@@ -3,20 +3,20 @@ import { useEffect, useState } from "react";
 import ReportTable from "../../components/reportTable/ReportTable";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import logo from "../../assets/tracevia_do_brasil_logo.jpeg"
+import logo from "../../assets/tracevia_do_brasil_logo.jpeg";
 import MultiSelect from "../../components/multiselect/Multiselect";
 import Modal from "../../components/modalSearch";
 import { FaFileExcel } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
-import { 
+import {
   Container,
   NameReport,
   OpenModal,
   ButtonExcel,
   Title,
   Logo,
-  ButtonContainer
- } from "./styles";
+  ButtonContainer,
+} from "./styles";
 
 // ================== Interfaces ==================
 interface Param {
@@ -53,9 +53,7 @@ export default function ReportPage({ reportName }: { reportName: string }) {
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-
   useEffect(() => {
-
     setReport(null);
     setParams({});
 
@@ -91,8 +89,9 @@ export default function ReportPage({ reportName }: { reportName: string }) {
         const pad = (num: number, size = 2) => String(num).padStart(size, "0");
 
         const formatted =
-          `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ` +
-          `${pad(date.getHours())}:${pad(date.getMinutes())}`;
+          `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(
+            date.getDate()
+          )} ` + `${pad(date.getHours())}:${pad(date.getMinutes())}`;
 
         filteredParams[key] = formatted;
       } else {
@@ -214,23 +213,16 @@ export default function ReportPage({ reportName }: { reportName: string }) {
         <NameReport>{manifest.name}</NameReport>
         <Logo></Logo>
         <ButtonContainer>
-          <OpenModal
-            onClick={() => setIsModalOpen(true)}
-          >
+          <OpenModal onClick={() => setIsModalOpen(true)}>
             <FaSearch size={20} />
           </OpenModal>
           {report && (
-            <ButtonExcel
-              onClick={exportToExcel}
-            >
+            <ButtonExcel onClick={exportToExcel}>
               <FaFileExcel size={20} />
             </ButtonExcel>
           )}
         </ButtonContainer>
       </Title>
-      
-
-      
 
       {loading && <p>Carregando dados...</p>}
       {report && (
@@ -288,6 +280,8 @@ export default function ReportPage({ reportName }: { reportName: string }) {
                     onChange={(val) => {
                       setParams({ ...params, [p.name]: val });
                     }}
+                    // Passa a label do parâmetro como placeholder
+                    placeholder={p.label}
                   />
                 ) : (
                   <input
