@@ -1,5 +1,6 @@
 import { HeaderMenu, ItemHeader } from "./styles";
 
+
 interface HeaderProps {
     onToggleSidebar: () => void;
 }

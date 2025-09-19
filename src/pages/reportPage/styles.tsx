@@ -9,6 +9,7 @@ export const NameReport = styled.span`
   margin-left: 150px;
   margin-bottom: 5px;
   font-size: 18px;
+  font-weight: bold;
 `;
 
 export const Title = styled.div`

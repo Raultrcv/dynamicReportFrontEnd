@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { 
+  Container,
   ContainerTable,
   Table 
 } from "./styles";
@@ -38,8 +39,8 @@ export default function ReportTable({ output, data }: ReportTableProps) {
   const headerCellStyle: React.CSSProperties = {
     backgroundColor: '#0E0E10', // Um tom de vermelho escuro
     color: 'white',
-    padding: '10px',
-    border: '1px solid #4B5563', // Borda cinza escura
+    padding: '15px',
+    border: '1px solid #424951', 
     textAlign: 'center',
     textTransform: 'uppercase',
     fontSize: '12px',
@@ -48,9 +49,11 @@ export default function ReportTable({ output, data }: ReportTableProps) {
 
   // Objeto de estilo para as células de dados
   const dataCellStyle: React.CSSProperties = {
-    padding: '10px',
-    border: '1px solid #4B5563',
-    color: "black"
+    padding: '12px',
+    border: '1px solid #424951',
+    color: "white",
+    backgroundColor: "#2C3034",
+    textAlign: 'center'
   };
 
   const renderTableHeader = () => {
@@ -90,28 +93,36 @@ export default function ReportTable({ output, data }: ReportTableProps) {
   };
 
   return (
+    <Container>
     <ContainerTable>
       <Table>
         {renderTableHeader()}
-        <tbody>
-          {data.map((row, rowIndex) => (
-            <tr key={`data-row-${rowIndex}`}>
-              {output.columns.map((col) => {
-                // Centraliza se o tipo da coluna for 'number'
-                const isNumber = col.type === 'number';
-                const cellStyle: React.CSSProperties = isNumber
-                  ? { ...dataCellStyle, textAlign: 'center' as React.CSSProperties['textAlign'] }
-                  : dataCellStyle;
-                return (
-                  <td key={`${col.name}-${rowIndex}`} style={cellStyle}>
-                    {row[col.name] ?? ""}
-                  </td>
-                );
-              })}
-            </tr>
-          ))}
-        </tbody>
+       <tbody>
+          {data.map((row, rowIndex) => {
+            const rowStyle = {
+              backgroundColor: rowIndex % 2 === 0 ? '#2C3034' : '#24282B'
+            };
+
+            return (
+              <tr key={`data-row-${rowIndex}`} style={rowStyle}>
+                {output.columns.map((col) => {
+                  const isNumber = col.type === 'number';
+                  const cellStyle: React.CSSProperties = isNumber
+                    ? { ...dataCellStyle, textAlign: 'center' as React.CSSProperties['textAlign'], backgroundColor: 'transparent' } // Opcional: define o fundo como transparente para herdar o fundo da linha
+                    : { ...dataCellStyle, backgroundColor: 'transparent' };
+
+                  return (
+                    <td key={`${col.name}-${rowIndex}`} style={cellStyle}>
+                      {row[col.name] ?? ""}
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
       </Table>
     </ContainerTable>
+    </Container>
   );
 }
