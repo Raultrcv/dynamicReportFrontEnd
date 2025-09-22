@@ -83,7 +83,7 @@ export const DateTime = styled.input`
   border: 1px solid #000;
   padding: 0.25rem 0.5rem;
   border-radius: 15px;
-  width: 96%;
+  width: 70%;
   height: 35px;
   border-radius: 25px;
   background-color: #FFF;

@@ -244,73 +244,84 @@ export default function ReportPage({ reportName }: { reportName: string }) {
       )}
 
       {isModalOpen && (
-        <Modal onClose={() => setIsModalOpen(false)}>
-          <ModalInput >
-            {manifest.params?.map((p) => (
-              <Params key={p.name}>
-                {p.type === "datetime-local" ? (
-                  <DateTime
-                    type="datetime-local"
-                    value={params[p.name] || ""}
-                    onChange={(e) =>
-                      setParams({ ...params, [p.name]: e.target.value })
-                    }
-                  />
-                ) : p.type === "select" ? (
-                  <select
-                    value={params[p.name]}
-                    onChange={(e) =>
-                      setParams({ ...params, [p.name]: e.target.value })
-                    }
-                  >
-                    <Options value="">{p.label}</Options>
-                    {p.options?.map((opt) => (
-                      <Options key={opt.value} value={opt.value}>
-                        {opt.label}
-                      </Options>
-                    ))}
-                  </select>
-                ) : p.type === "select-multi" ? (
-                  <MultiSelect
-                    name={p.name}
-                    options={
-                      p.options
-                        ? p.options.map((opt) => ({
-                            value: opt.value,
-                            label: opt.label,
-                          }))
-                        : []
-                    }
-                    value={Array.isArray(params[p.name]) ? params[p.name] : []}
-                    onChange={(val) => {
-                      setParams({ ...params, [p.name]: val });
-                    }}
-                    // Passa a label do parâmetro como placeholder
-                    placeholder={p.label}
-                  />
-                ) : (
-                  <Number
-                    type={p.type === "number" ? "number" : "text"}
-                    value={params[p.name]}
-                    onChange={(e) =>
-                      setParams({ ...params, [p.name]: e.target.value })
-                    }
-                  />
-                )}
-              </Params>
-            ))}
-
-            <SubmitButton
-              onClick={() => {
-                fetchReport();
-                setIsModalOpen(false);
-              }}
+  <Modal onClose={() => setIsModalOpen(false)}>
+    <ModalInput>
+     
+      {manifest.params?.filter(p => p.type !== 'datetime-local').map((p) => (
+        <Params key={p.name}>
+          {p.type === "select" ? (
+            <select
+              value={params[p.name]}
+              onChange={(e) =>
+                setParams({ ...params, [p.name]: e.target.value })
+              }
             >
-              Filtrar
-            </SubmitButton>
-          </ModalInput>
-        </Modal>
-      )}
+              <Options value="">{p.label}</Options>
+              {p.options?.map((opt) => (
+                <Options key={opt.value} value={opt.value}>
+                  {opt.label}
+                </Options>
+              ))}
+            </select>
+          ) : p.type === "select-multi" ? (
+            <MultiSelect
+              name={p.name}
+              options={
+                p.options
+                  ? p.options.map((opt) => ({
+                      value: opt.value,
+                      label: opt.label,
+                    }))
+                  : []
+              }
+              value={Array.isArray(params[p.name]) ? params[p.name] : []}
+              onChange={(val) => {
+                setParams({ ...params, [p.name]: val });
+              }}
+              placeholder={p.label}
+            />
+          ) : (
+            <Number
+              type={p.type === "number" ? "number" : "text"}
+              value={params[p.name]}
+              onChange={(e) =>
+                setParams({ ...params, [p.name]: e.target.value })
+              }
+              placeholder={p.label}
+            />
+          )}
+        </Params>
+      ))}
+
+       <div style={{ display: 'flex', gap: '10px', marginBottom: '15px' }}>
+        {manifest.params?.filter(p => p.type === 'datetime-local').map((p) => (
+          <Params key={p.name} style={{ flex: 1 }}>
+            <label style={{ display: 'block', marginBottom: '10px', fontWeight: 'bold', marginLeft: '10px' }}>
+              {p.label}
+            </label>
+            <DateTime
+              type="datetime-local"
+              value={params[p.name] || ""}
+              onChange={(e) =>
+                setParams({ ...params, [p.name]: e.target.value })
+              }
+            />
+          </Params>
+        ))}
+      </div>
+
+      <SubmitButton
+        onClick={() => {
+          fetchReport();
+          setIsModalOpen(false);
+        }}
+      >
+        Filtrar
+      </SubmitButton>
+      
+    </ModalInput>
+  </Modal>
+)}
     </Container>
   );
 }
