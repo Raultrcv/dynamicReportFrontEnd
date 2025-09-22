@@ -9,15 +9,15 @@ export const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; 
   z-index: 1000;
 `;
 
 export const ContainerModal = styled.div`
-  width: 450px;
+  width: 500px;
   background-color: #FFFFFF;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 8px 10px 5px rgba(14, 14, 14, 1);
   display: flex;
   flex-direction: column;
   padding: 20px;
