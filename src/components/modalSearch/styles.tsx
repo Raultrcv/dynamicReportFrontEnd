@@ -103,11 +103,3 @@ export const Button = styled.button`
     outline: none;
   }
 `;
-
-export const PrimaryButton = styled(Button)`
-
-`;
-
-export const SecondaryButton = styled(Button)`
-
-`;

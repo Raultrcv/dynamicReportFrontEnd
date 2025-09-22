@@ -63,6 +63,41 @@ export const Logo = styled.div`
 `;
 
 export const Options = styled.option`
-  color: red;
-  width: 25px;
+  color: black;
+  font-size: 15px;
+  border: 10px solid red;
   `;
+
+export const SubmitButton = styled.button`
+`;
+
+export const ModalInput = styled.div`
+  padding: 16px;
+`;
+
+export const Params = styled.div`
+  margin-bottom: 16px;
+`;
+
+export const DateTime = styled.input`
+  border: 1px solid #000;
+  padding: 0.25rem 0.5rem;
+  border-radius: 15px;
+  width: 96%;
+  height: 35px;
+  border-radius: 25px;
+  background-color: #FFF;
+  color: #000;
+
+  &::-webkit-calendar-picker-indicator {
+    filter: brightness(0);
+    cursor: pointer;
+    padding-right: 10px;
+    font-size: 20px;
+  }
+  `;
+
+export const Number = styled.input`
+  border: 1px solid #000;
+  padding: 0.25rem 0.5rem;
+`;

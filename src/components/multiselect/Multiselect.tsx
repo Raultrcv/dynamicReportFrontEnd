@@ -51,13 +51,13 @@ const MultiSelect = ({
       <div
         onClick={() => setOpen(!open)}
         style={{
-          border: "1px solid #ccc",
+          border: "1px solid #000",
           padding: "8px",
           marginBottom: '5px',
           cursor: "pointer",
           borderRadius: 20,
           background: "white",
-          textAlign: 'center'
+          paddingLeft: 10
         }}
       >
         {selected.length > 0

@@ -6,13 +6,9 @@ import {
   ModalHeader,
   ModalTitle,
   CloseButton,
-  StyledInputContainer, // Importa o novo componente
-  ButtonContainer,      // Importa o novo container de botões
-  PrimaryButton,        // Importa o botão primário
-  SecondaryButton,      // Importa o botão secundário
+  ButtonContainer,     
 } from "./styles";
 import { MdClose } from "react-icons/md";
-import { FaCalendarAlt, FaBriefcase } from "react-icons/fa"; // Exemplo de ícones
 
 interface ModalProps {
   onClose: () => void;
@@ -34,8 +30,6 @@ export default function Modal({ onClose, children }: ModalProps) {
         {children}
 
         <ButtonContainer>
-          <SecondaryButton>Limpar</SecondaryButton>
-          <PrimaryButton>Enviar</PrimaryButton>
         </ButtonContainer>
       </ContainerModal>
     </Overlay>

@@ -16,7 +16,12 @@ import {
   Title,
   Logo,
   ButtonContainer,
-  Options
+  Options,
+  SubmitButton,
+  ModalInput,
+  Params,
+  DateTime,
+  Number
 } from "./styles";
 
 // ================== Interfaces ==================
@@ -240,17 +245,16 @@ export default function ReportPage({ reportName }: { reportName: string }) {
 
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)}>
-          <div className="p-4">
+          <ModalInput >
             {manifest.params?.map((p) => (
-              <div key={p.name} className="mb-4">
+              <Params key={p.name}>
                 {p.type === "datetime-local" ? (
-                  <input
+                  <DateTime
                     type="datetime-local"
                     value={params[p.name] || ""}
                     onChange={(e) =>
                       setParams({ ...params, [p.name]: e.target.value })
                     }
-                    className="border px-2 py-1"
                   />
                 ) : p.type === "select" ? (
                   <select
@@ -285,28 +289,26 @@ export default function ReportPage({ reportName }: { reportName: string }) {
                     placeholder={p.label}
                   />
                 ) : (
-                  <input
+                  <Number
                     type={p.type === "number" ? "number" : "text"}
                     value={params[p.name]}
                     onChange={(e) =>
                       setParams({ ...params, [p.name]: e.target.value })
                     }
-                    className="border px-2 py-1"
                   />
                 )}
-              </div>
+              </Params>
             ))}
 
-            <button
+            <SubmitButton
               onClick={() => {
                 fetchReport();
                 setIsModalOpen(false);
               }}
-              className="px-3 py-1 bg-blue-600 text-white rounded"
             >
               Filtrar
-            </button>
-          </div>
+            </SubmitButton>
+          </ModalInput>
         </Modal>
       )}
     </Container>
