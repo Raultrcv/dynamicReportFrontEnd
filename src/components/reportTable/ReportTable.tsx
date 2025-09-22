@@ -37,7 +37,7 @@ export default function ReportTable({ output, data }: ReportTableProps) {
 
   // Objeto de estilo para as células do cabeçalho
   const headerCellStyle: React.CSSProperties = {
-    backgroundColor: '#0E0E10', // Um tom de vermelho escuro
+    backgroundColor: '#0E0E10',
     color: 'white',
     padding: '15px',
     border: '1px solid #424951', 

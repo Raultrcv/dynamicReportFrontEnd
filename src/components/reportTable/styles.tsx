@@ -5,6 +5,7 @@ export const Container = styled.div`
     max-width: 100%;
     margin: 0 auto;
     overflow-y: auto; 
+    background-color: #2C3034;
 `;
 
 export const ContainerTable = styled.div`
@@ -14,6 +15,11 @@ export const ContainerTable = styled.div`
 export const Table = styled.table`
     width: 100%;
     border-collapse: collapse;
-    color: red;
     
+    thead {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+
+    }
 `;

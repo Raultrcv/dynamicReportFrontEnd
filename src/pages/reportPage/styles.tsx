@@ -69,6 +69,8 @@ export const Options = styled.option`
   `;
 
 export const SubmitButton = styled.button`
+  float: right;
+  
 `;
 
 export const ModalInput = styled.div`
