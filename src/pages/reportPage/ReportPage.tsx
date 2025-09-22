@@ -293,7 +293,7 @@ export default function ReportPage({ reportName }: { reportName: string }) {
         </Params>
       ))}
 
-       <div style={{ display: 'flex', gap: '10px', marginBottom: '15px' }}>
+       <div style={{ display: 'flex', marginBottom: '15px' }}>
         {manifest.params?.filter(p => p.type === 'datetime-local').map((p) => (
           <Params key={p.name} style={{ flex: 1 }}>
             <label style={{ display: 'block', marginBottom: '10px', fontWeight: 'bold', marginLeft: '10px' }}>
